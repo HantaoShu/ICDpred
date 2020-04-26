@@ -36,7 +36,8 @@ ICDscoring = function(CID,SDF){
   #CALCULATE DESCRIPTORS
   dn=sapply(get.desc.categories(),function(x)get.desc.names(x))
   descs=do.call('cbind',lapply(dn, function(x)eval.desc(PAR,x)))
-  
+  if (is.na(descs['constitutional.nAtomLAC']))
+      descs['constitutional.nAtomLAC']=0
   #ADD PRECOMPUTED DESCRIPTORS
   miss=c("Molecular.Weight","Hydrogen.Bond.Donor.Count","Hydrogen.Bond.Acceptor.Count",
          "Rotatable.Bond.Count","Exact.Mass","Monoisotopic.Mass","Topological.Polar.Surface.Area","Heavy.Atom.Count","Complexity")
